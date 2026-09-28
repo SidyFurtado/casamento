@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e2dbd0">
+  <meta name="description" content="Ale e Sidy. Os detalhes do casamento, o convite e a confirmação de presença.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ale e Sidy</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/cormorant-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/images/hero-mobile.webp" as="image" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" href="assets/images/hero-desktop.webp" as="image" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // js + "revisit": quem já viu a entrada recebe uma versão curta dela (sem reassistir).
+    (function (d) {
+      d.classList.replace('no-js', 'js');
+      try { if (localStorage.getItem('as-seen')) d.classList.add('revisit'); localStorage.setItem('as-seen', '1'); } catch (e) {}
+    })(document.documentElement);
+  </script>
+  <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#rsvp">Ir para confirmar presença</a>
+
+  <!-- ícones de linha: só onde têm função (data, horário, local) e o ramo de oliveira do tema -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4M7.5 13h1M11.5 13h1M15.5 13h1M7.5 16.5h1M11.5 16.5h1"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-branch" viewBox="0 0 120 200"><path class="stem" d="M60 198 C58 150 62 100 66 8"/><path class="leaf" fill="currentColor" fill-opacity=".62" stroke="none" d="M60 170c-18-2-30-12-36-26 16 2 30 10 36 26zM61 146c16-6 30-4 40 6-14 6-30 4-40-6zM62 120c-16-4-26-14-30-28 14 4 26 12 30 28zM63 96c14-8 28-8 38 0-12 8-28 8-38 0zM64 72c-14-6-22-16-24-30 12 6 22 14 24 30zM65 48c12-8 24-10 34-4-10 8-24 10-34 4zM66 26c-8-8-12-16-10-26 8 6 12 16 10 26z"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <a class="wordmark" href="#inicio" aria-label="Ale e Sidy — início">Ale e Sidy</a>
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#historia">História</a>
+      <a href="#casamento">Informações</a>
+      <a href="#convite">Convite</a>
+      <a class="pill pill-dark pill-sm" href="#rsvp" data-open-rsvp>Confirmar presença</a>
+    </nav>
+    <details class="mobile-menu">
+      <summary><span class="visually-hidden">Menu</span><span class="menu-lines" aria-hidden="true"><i></i></span></summary>
+      <nav aria-label="Navegação">
+        <a href="#casamento">Informações</a>
+        <a href="#historia">Nossa história</a>
+        <a href="#convite">Convite</a>
+        <a href="#rsvp" data-open-rsvp>Confirmar presença</a>
+      </nav>
+    </details>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <figure class="hero-photo" data-parallax>
+        <picture>
+          <source media="(max-width: 760px)" srcset="assets/images/hero-mobile.webp" width="1000" height="2002">
+          <img src="assets/images/hero-desktop.webp" width="2200" height="1468" alt="Vale ao amanhecer, entre montanhas — fotografia provisória" fetchpriority="high" decoding="async">
+        </picture>
+      </figure>
+      <div class="hero-copy">
+        <h1 id="hero-title"><span class="line"><span>Ale</span></span> <span class="line"><span>e Sidy</span></span></h1>
+        <p class="tagline">Do nosso jeito,<br>sempre juntos.</p>
+        <p class="hero-date">Data a definir</p>
+        <p class="hero-place">Local a definir</p>
+        <p class="photo-note hero-note">Fotografia provisória</p>
+      </div>
+      <a class="scroll-cue" href="#historia"><span class="mouse" aria-hidden="true"></span>Role para baixo</a>
+      <a class="pill pill-dark pill-sm hero-cta" href="#rsvp" data-open-rsvp>Confirmar presença</a>
+    </section>
+
+    <!-- NOSSA HISTÓRIA -->
+    <section class="story" id="historia" aria-labelledby="story-title">
+      <div class="story-copy">
+        <h2 id="story-title">Nossa história</h2>
+        <p>Entre dias comuns e momentos que ficaram, este espaço vai guardar as nossas fotografias.</p>
+        <p class="photo-note">Fotografias provisórias</p>
+      </div>
+      <div class="story-photos">
+        <figure class="polaroid p1" data-reveal><img src="assets/images/story-1.webp" width="886" height="933" loading="lazy" decoding="async" alt="Casa sobre um lago entre montanhas, em preto e branco — fotografia provisória"></figure>
+        <figure class="polaroid p2" data-reveal><img src="assets/images/story-2.webp" width="900" height="702" loading="lazy" decoding="async" alt="Lago entre montanhas — fotografia provisória"></figure>
+        <p class="handnote" data-reveal aria-hidden="true">dias comuns,<br>guardados aqui</p>
+      </div>
+    </section>
+
+    <!-- O CASAMENTO -->
+    <section class="wedding" id="casamento" aria-labelledby="wedding-title">
+      <figure class="wedding-photo" data-parallax>
+        <img src="assets/images/wedding-mist.webp" width="2200" height="1158" loading="lazy" decoding="async" alt="Floresta envolta em névoa — fotografia provisória do lugar">
+      </figure>
+      <svg class="branch branch-wedding" aria-hidden="true" focusable="false"><use href="#i-branch"/></svg>
+      <div class="wedding-copy">
+        <span class="rule" aria-hidden="true"></span>
+        <h2 id="wedding-title">O casamento</h2>
+        <p class="lead">Queremos viver esse dia ao lado das pessoas que fazem parte da nossa história. Será especial ter você com a gente.</p>
+        <dl class="facts">
+          <div><dt><svg aria-hidden="true" focusable="false"><use href="#i-cal"/></svg><span class="visually-hidden">Data</span></dt><dd>Data a definir<span>em breve</span></dd></div>
+          <div><dt><svg aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span class="visually-hidden">Horário</span></dt><dd>Horário a definir<span>cerimônia</span></dd></div>
+          <div><dt><svg aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span class="visually-hidden">Local</span></dt><dd>Local a definir<span>endereço em breve</span></dd></div>
+        </dl>
+        <button class="pill pill-dark map-btn" type="button" disabled aria-describedby="map-note">Ver local no mapa <span aria-hidden="true">→</span></button>
+        <p class="note" id="map-note">O mapa abre assim que o local for confirmado.</p>
+      </div>
+    </section>
+
+    <!-- CONFIRMAR PRESENÇA + CONVITE -->
+    <section class="duo" aria-label="Confirmar presença e convite">
+      <div class="rsvp" id="rsvp" tabindex="-1" data-reveal>
+        <svg class="branch branch-rsvp" aria-hidden="true" focusable="false"><use href="#i-branch"/></svg>
+        <h2 id="rsvp-title">Confirmar presença</h2>
+        <p>Mais do que um evento, esse dia é feito de pessoas que importam. Confirme sua presença e nos ajude a planejar tudo com muito carinho.</p>
+        <button class="pill pill-dark rsvp-open" type="button" aria-expanded="false" aria-controls="rsvp-form">Confirmar presença <span aria-hidden="true">→</span></button>
+        <form class="rsvp-form" id="rsvp-form" novalidate hidden aria-describedby="rsvp-note">
+          <label for="guest-name">Nome completo</label>
+          <input id="guest-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+          <label for="guest-phone">WhatsApp</label>
+          <input id="guest-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(DDD) 00000-0000" maxlength="24" minlength="10" required aria-describedby="phone-note">
+          <p class="field-note" id="phone-note">Depois da validação na lista de convidados, seu código chega por esse WhatsApp.</p>
+          <button class="pill pill-dark" type="submit" id="rsvp-submit">Enviar <span aria-hidden="true">→</span></button>
+          <p class="note" id="rsvp-note">Prévia: nenhum dado é enviado e nenhuma presença é confirmada ainda.</p>
+          <p class="form-status" id="rsvp-status" role="status" aria-live="polite" hidden></p>
+        </form>
+        <noscript><p class="note">A confirmação precisa de JavaScript e ainda não está aberta.</p></noscript>
+      </div>
+
+      <div class="invite" id="convite">
+        <h2 id="invite-title">Nosso convite</h2>
+        <p>Preparamos um convite especial para você. Abra e descubra os detalhes.</p>
+        <button class="pill pill-line invite-btn" type="button" aria-expanded="false" aria-controls="invite-card"><span class="when-closed">Abrir convite</span><span class="when-open">Fechar convite</span> <span aria-hidden="true">→</span></button>
+        <p class="note invite-note">Primeira prévia do convite.</p>
+        <div class="envelope" data-open="false">
+          <div class="env-card" id="invite-card">
+            <p class="card-kicker">Vamos celebrar juntos</p>
+            <p class="card-names">Ale e Sidy</p>
+            <span class="card-rule" aria-hidden="true"></span>
+            <p class="card-line">Data a definir</p>
+            <p class="card-line">Horário a definir</p>
+            <p class="card-line">Local a definir</p>
+          </div>
+          <span class="env-body" aria-hidden="true"><svg class="env-branch" focusable="false"><use href="#i-branch"/></svg></span>
+          <span class="env-flap" aria-hidden="true"><span class="flap-front"></span><span class="flap-back"></span></span>
+          <span class="env-seal" aria-hidden="true">AS</span>
+          <button class="env-hit" type="button" tabindex="-1" aria-hidden="true"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENCERRAMENTO -->
+    <footer class="closing">
+      <div class="closing-photo" data-parallax>
+        <img src="assets/images/closing-sea.webp" width="1600" height="1067" loading="lazy" decoding="async" alt="">
+        <div class="closing-phrase" data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <p class="handnote">que seja sempre<br>do nosso jeito</p>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="closing-copy" data-reveal>
+        <h2><span class="line"><span>Até lá</span></span></h2>
+        <p>Estamos contando os dias para viver esse momento com você.</p>
+        <svg class="heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>
+        <p class="photo-note">Ale e Sidy · fotografias provisórias</p>
+      </div>
+    </footer>
+  </main>
+
+  <a class="mobile-rsvp" href="#rsvp" data-open-rsvp>Confirmar presença <span aria-hidden="true">→</span></a>
+</body>
+</html>

@@ -1,0 +1,475 @@
+/* Ale e Sidy — landing. Alvo visual: a referência de direção de arte (creme quente dominante,
+   oliva quase preto na tipografia e nos botões, fotografia quente e baixa, serifa editorial grande,
+   sans pequena e limpa). Mobile-first 390×844; expansão desktop a partir de 1024px. */
+
+@font-face { font-family: Cormorant; src: url('assets/fonts/cormorant-regular.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: Cormorant; src: url('assets/fonts/cormorant-italic.woff2') format('woff2'); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: Hand; src: url('assets/fonts/labelleaurore.woff2') format('woff2'); font-display: swap; }
+
+:root {
+  --cream: #e4ddd2;       /* página */
+  --cream-2: #dcd4c8;     /* faixa confirmação/convite */
+  --cream-3: #e1dace;
+  --paper: #f3efe7;       /* borda das fotos impressas, cartão do convite */
+  --ink: #30331f;         /* oliva quase preto: títulos */
+  --olive: #3a3d29;       /* botões */
+  --olive-2: #4a4c35;     /* envelope */
+  --olive-3: #5c5e45;
+  --text: #55544a;        /* texto corrido */
+  --muted: #6e6b60;
+  --line: rgba(48, 51, 31, .3);
+  --seal: #b99a7f;
+  --night: #1c1e17;
+  --on-dark: #ebe5da;
+  --on-dark-2: #b8b2a5;
+
+  --serif: Cormorant, 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  --hand: Hand, 'Bradley Hand', cursive;
+  --gutter: 24px;
+  --ease: cubic-bezier(.2, .7, .15, 1);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }   /* links internos deslizam pelo main.js; sem JS, salto nativo */
+body { margin: 0; background: var(--cream); color: var(--text); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+h1, h2, p, dl, dd { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+svg { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+
+[hidden] { display: none !important; }   /* o atributo sempre vence classes com display próprio (ex.: .pill) */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 60; padding: 12px 16px; background: var(--olive); color: var(--paper); text-decoration: none; }
+.skip-link:focus { top: 12px; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* tipografia */
+h2 { font: 400 44px/1.02 var(--serif); color: var(--ink); letter-spacing: -.005em; }
+.note { font-size: 13px; line-height: 1.45; color: var(--muted); }
+.photo-note { font: 500 10px/1.3 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.handnote { font: 400 24px/1.25 var(--hand); color: var(--olive-3); }
+.rule { display: block; width: 44px; height: 1px; background: currentColor; opacity: .55; }
+
+/* papel: grão muito sutil nas superfícies creme */
+.story, .duo { position: relative; isolation: isolate; }
+.story::before, .duo::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: var(--grain); opacity: .07; mix-blend-mode: multiply; }
+
+/* botões: pílula, sem sombra */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+  min-height: 48px; padding: 0 26px; border-radius: 999px; border: 1px solid transparent;
+  font: 600 11.5px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; white-space: nowrap;
+  text-decoration: none; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  transition: background-color .25s, color .25s, border-color .25s, transform .12s ease-out;
+}
+.pill span[aria-hidden] { font-size: 15px; letter-spacing: 0; display: inline-block; transition: transform .35s var(--ease); }
+.pill:not(:disabled):active { transform: scale(.97); transition-duration: .06s; }
+@media (hover: hover) { .pill:not(:disabled):hover span[aria-hidden] { transform: translateX(4px); } }
+.pill:focus-visible span[aria-hidden] { transform: translateX(4px); }
+.pill-sm { min-height: 44px; padding: 0 22px; font: 500 13px/1 var(--sans); letter-spacing: .01em; text-transform: none; }
+.pill-dark { background: var(--olive); color: var(--paper); }
+.pill-dark:hover { background: var(--ink); }
+.pill-line { border-color: var(--ink); color: var(--ink); background: transparent; }
+.pill-line:hover { background: rgba(48, 51, 31, .06); }
+.pill:disabled { cursor: not-allowed; opacity: .62; }
+
+/* ramo de oliveira (o tema do casamento) */
+.branch { position: absolute; pointer-events: none; color: #7c7e62; stroke-width: 1.4; }
+
+/* ------------------------------------------------------------------ cabeçalho */
+.site-header {
+  position: absolute; z-index: 30; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(18px + env(safe-area-inset-top)) var(--gutter) 0; color: var(--ink);
+}
+.wordmark { font: 400 22px/1 var(--serif); text-decoration: none; color: var(--ink); }
+.desktop-nav { display: none; }
+.mobile-menu { position: relative; }
+.mobile-menu summary { list-style: none; display: grid; place-items: center; width: 44px; height: 44px; margin-right: -10px; cursor: pointer; }
+.mobile-menu summary::-webkit-details-marker { display: none; }
+.menu-lines { width: 22px; height: 13px; position: relative; }
+.menu-lines::before, .menu-lines::after, .menu-lines i { content: ''; position: absolute; left: 0; right: 0; height: 1.4px; background: var(--ink); transition: transform .35s var(--ease), opacity .2s; }
+.menu-lines::before { top: 0; }
+.menu-lines i { top: 50%; margin-top: -.7px; }
+.menu-lines::after { bottom: 0; }
+.mobile-menu[open] .menu-lines::before { transform: translateY(5.8px) rotate(45deg); }
+.mobile-menu[open] .menu-lines::after { transform: translateY(-5.8px) rotate(-45deg); }
+.mobile-menu[open] .menu-lines i { transform: scaleX(0); opacity: 0; }
+.mobile-menu nav {
+  position: absolute; right: -10px; top: calc(100% + 6px); width: min(78vw, 300px);
+  display: grid; padding: 8px 22px; background: var(--paper); color: var(--ink);
+  box-shadow: 0 18px 40px -24px rgba(30, 30, 20, .5);
+}
+.mobile-menu[open] nav { animation: menu-in .32s var(--ease) both; }
+@keyframes menu-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.mobile-menu nav a { display: flex; align-items: center; min-height: 52px; text-decoration: none; font: 400 25px/1 var(--serif); border-bottom: 1px solid var(--line); transition: padding-left .3s var(--ease), color .2s; }
+.mobile-menu nav a:active { padding-left: 6px; color: var(--olive-3); }
+.mobile-menu nav a:last-child { border-bottom: 0; }
+
+/* ------------------------------------------------------------------ hero */
+main { display: flex; flex-direction: column; }
+.hero { position: relative; order: 1; min-height: 88vh; min-height: 88svh; overflow: hidden; background: var(--cream); }
+.hero-photo { position: absolute; inset: 0; overflow: hidden; }
+.hero-photo picture, .hero-photo img { width: 100%; height: 100%; }
+.hero-photo img { object-fit: cover; object-position: 50% 0; transform: translate3d(0, var(--py, 0px), 0) scale(var(--s, 1.08)); transform-origin: 50% 30%; will-change: transform; }
+.hero-copy { position: relative; z-index: 2; padding: calc(112px + env(safe-area-inset-top)) var(--gutter) 0; color: var(--ink); }
+.hero h1 { font: 400 clamp(76px, 22vw, 104px)/.84 var(--serif); letter-spacing: -.02em; color: var(--ink); }
+.line { display: block; }
+.tagline { margin-top: 22px; font: 600 10.5px/1.75 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: #43462f; }
+.hero-date { margin-top: 20px; font: 400 16px/1 var(--sans); letter-spacing: .22em; color: var(--ink); }
+.hero-place { margin-top: 9px; font: 600 10px/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: #5f5a4b; }
+.scroll-cue {
+  position: absolute; z-index: 2; left: var(--gutter); bottom: calc(26px + env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px;
+  font: 400 13px/1 var(--sans); color: var(--paper); text-decoration: none;
+}
+.mouse { width: 16px; height: 26px; border: 1.3px solid currentColor; border-radius: 9px; position: relative; }
+.mouse::after { content: ''; position: absolute; left: 50%; top: 5px; width: 1.3px; height: 7px; margin-left: -.65px; background: currentColor; border-radius: 1px; animation: wheel 2.4s var(--ease) infinite; }
+@keyframes wheel { 0%, 20% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(7px); opacity: 0; } 100% { opacity: 0; } }
+.hero-cta { position: absolute; z-index: 2; right: var(--gutter); bottom: calc(26px + env(safe-area-inset-bottom)); }
+.hero-note { position: absolute; right: var(--gutter); top: calc(74px + env(safe-area-inset-top)); color: #6f6857; }
+
+/* ------------------------------------------------------------------ o casamento (no celular: logo depois do hero) */
+.wedding { position: relative; order: 2; background: var(--cream); color: var(--ink); overflow: hidden; }
+.wedding-photo { display: none; }
+.branch-wedding { width: 120px; height: 200px; right: -30px; top: -40px; transform: rotate(52deg); color: #8b8c72; }
+.wedding-copy { position: relative; padding: 64px var(--gutter) 84px; }
+.wedding-copy h2 { margin-top: 22px; }
+.lead { margin-top: 20px; max-width: 31ch; color: var(--text); }
+.facts { margin-top: 34px; display: grid; gap: 22px; }
+.facts > div { display: grid; grid-template-columns: 26px 1fr; gap: 16px; align-items: start; }
+.facts dt svg { width: 26px; height: 26px; color: var(--ink); }
+.facts dd { font: 400 15px/1.3 var(--sans); color: var(--ink); }
+.facts dd span { display: block; font-size: 13px; color: var(--muted); }
+.map-btn { margin-top: 36px; background: transparent; color: var(--ink); border-color: var(--ink); }
+.wedding-copy .note { margin-top: 12px; }
+
+/* ------------------------------------------------------------------ nossa história */
+.story { order: 3; padding: 84px var(--gutter) 96px; background: var(--cream-3); }
+.story-copy p:not(.photo-note) { margin-top: 18px; max-width: 32ch; }
+.story-copy .photo-note { margin-top: 20px; }
+.story-photos { position: relative; margin-top: 44px; height: 420px; }
+.polaroid { position: absolute; padding: 9px 9px 10px; background: var(--paper); box-shadow: 0 22px 36px -24px rgba(40, 34, 22, .55), 0 1px 2px rgba(40, 34, 22, .18); }
+.polaroid img { width: 100%; height: 100%; object-fit: cover; }
+.p1 { left: 2%; top: 0; width: 60%; aspect-ratio: .95; transform: rotate(-3deg); }
+.p2 { right: 2%; top: 46%; width: 58%; aspect-ratio: 1.24; transform: rotate(3.5deg); z-index: 2; }
+.story-photos .handnote { position: absolute; right: 0; top: 8%; transform: rotate(-6deg); font-size: 22px; }
+
+/* ------------------------------------------------------------------ confirmação + convite */
+.duo { order: 4; background: var(--cream-2); }
+.rsvp, .invite { position: relative; padding: 76px var(--gutter); }
+.rsvp { overflow: hidden; }
+.rsvp:focus { outline: none; }
+.rsvp > p, .invite > p:not(.note) { margin-top: 18px; max-width: 34ch; }
+.rsvp-open, .invite-btn { margin-top: 30px; }
+.branch-rsvp { width: 110px; height: 190px; left: -44px; bottom: -34px; transform: rotate(-18deg); opacity: .8; }
+.invite { border-top: 1px solid var(--line); background: var(--cream-3); }
+.when-open { display: none; }
+[aria-expanded="true"] .when-open { display: inline; }
+[aria-expanded="true"] .when-closed { display: none; }
+
+.rsvp-form { margin-top: 26px; display: grid; max-width: 440px; }
+.rsvp-form[hidden] { display: none; }
+.rsvp-form label { margin-top: 18px; font: 600 10.5px/1.2 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+.rsvp-form label:first-child { margin-top: 0; }
+.rsvp-form input { margin-top: 6px; min-height: 48px; width: 100%; padding: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font: 400 22px/1.2 var(--serif); }
+.rsvp-form input::placeholder { color: #8d8879; }
+.rsvp-form input:focus { outline: none; }
+.field-note { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.rsvp-form .pill { justify-self: start; margin-top: 24px; }
+.rsvp-form .note { margin-top: 12px; }
+.form-status { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink); }
+
+/* envelope: objeto físico. Ao abrir, a aba vira, o cartão sobe e o envelope desce — o cartão cabe
+   na própria seção, sem cobrir outras. */
+/* posição de abertura em translate/rotate (propriedades próprias): não mexe no layout.
+   O espaço para onde o envelope desce fica reservado abaixo dele. */
+.envelope {
+  --env-tx: 0deg; --env-y: 0px; --env-press: 1; --env-sh: 1;
+  position: relative; width: 228px; height: 322px; margin: 216px auto 20px;
+  rotate: -5deg;
+  transform: perspective(1200px) translate3d(0, var(--env-y), 0) rotateX(var(--env-tx)) scale(var(--env-press));
+  transition: translate .6s var(--ease) .45s, rotate .6s var(--ease) .45s, transform .5s var(--ease); perspective: 900px;
+  translate: 0 -176px;
+}
+.envelope[data-open="true"] { translate: 0 0; rotate: -2deg; transition: translate .6s var(--ease) .05s, rotate .6s var(--ease) .05s, transform .5s var(--ease); }
+.env-body, .env-flap, .env-card, .env-hit { position: absolute; }
+.env-body {
+  inset: 0; z-index: 2; overflow: hidden; background: var(--olive-2);
+  /* sombra de objeto apoiado: mais longa e difusa enquanto "cai", curta quando assenta */
+  box-shadow: 0 calc(18px + 26px * var(--env-sh)) calc(30px + 30px * var(--env-sh)) -26px rgba(30, 28, 18, calc(.78 - .18 * var(--env-sh))), 0 2px 3px rgba(30, 28, 18, .25);
+}
+.env-body::before {   /* dobras da frente: só por diferença de tom */
+  content: ''; position: absolute; inset: 0; background: #434630;
+  clip-path: polygon(0 100%, 50% 58%, 100% 100%);
+}
+.env-body::after { content: ''; position: absolute; inset: 0; background-image: var(--grain); opacity: .16; mix-blend-mode: soft-light; }
+.env-branch { position: absolute; left: 16%; top: 30%; width: 66%; height: 72%; transform: rotate(24deg); color: #3b3e29; stroke-width: 1.6; }
+.env-flap {
+  z-index: 3; left: 0; right: 0; top: 0; height: 46%; transform-origin: 50% 0; transform-style: preserve-3d;
+  transition: transform .6s var(--ease) .32s, z-index 0s linear .62s;       /* fechando: depois do cartão voltar */
+}
+.flap-front, .flap-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flap-front { background: #52553b; clip-path: polygon(0 0, 100% 0, 50% 100%); transition: filter .3s ease .62s; }
+.flap-back { background: #5a5d42; clip-path: polygon(0 100%, 100% 100%, 50% 0); transform: rotateX(180deg); filter: brightness(.75); transition: filter .3s ease .32s; }
+.env-card {
+  z-index: 1; left: 7%; right: 7%; top: 5%; height: 88%;
+  display: grid; align-content: start; justify-items: center; gap: 4px; padding: 20px 14px;
+  background: var(--paper); color: var(--ink); text-align: center;
+  transform: translateY(0) rotate(-1.5deg); transition: transform .5s var(--ease), box-shadow .5s;
+}
+.env-card > * { opacity: 0; transition: opacity .15s; }
+.card-kicker { font: 600 8.5px/1.4 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--olive-3); }
+.card-names { font: 400 36px/1 var(--serif); margin-top: 8px; }
+.card-rule { width: 34px; height: 1px; background: currentColor; opacity: .45; margin: 10px 0 6px; }
+.card-line { font-size: 13px; color: var(--text); }
+.env-seal {
+  position: absolute; z-index: 4; left: 50%; top: 46%; width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--seal); color: #6f5541; font: 400 19px/1 var(--serif); letter-spacing: .02em;
+  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .12), inset 0 0 0 6px rgba(90, 64, 44, .25), 0 3px 6px rgba(30, 20, 10, .3);
+  transition: opacity .3s ease .8s, transform .45s var(--ease) .8s;
+}
+.env-hit { z-index: 5; inset: 0; border: 0; padding: 0; background: transparent; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+/* abrindo: o selo solta, a aba vira (a face de fora escurece ao girar, a de dentro clareia), o cartão sobe e endireita */
+.envelope[data-open="true"] .env-seal { opacity: 0; transform: translateY(-14px) rotate(-10deg) scale(.9); transition: opacity .25s ease, transform .35s var(--ease); }
+.envelope[data-open="true"] .env-flap { transform: rotateX(180deg); z-index: 0; transition: transform .6s var(--ease) .12s, z-index 0s linear .42s; }
+.envelope[data-open="true"] .flap-front { filter: brightness(.55); transition: filter .3s ease .12s; }
+.envelope[data-open="true"] .flap-back { filter: brightness(1.04); transition: filter .35s ease .42s; }
+.envelope[data-open="true"] .env-card { transform: translateY(-70%) rotate(0deg); box-shadow: 0 16px 26px -20px rgba(30, 28, 18, .55); transition: transform .75s var(--ease) .4s, box-shadow .75s .4s; }
+.envelope[data-open="true"] .env-card > * { opacity: 1; transition: opacity .5s ease .85s; }
+.envelope[data-open="true"] .env-card > :nth-child(n+4) { transition-delay: .98s; }
+.invite-note { margin-top: 14px; }
+.no-js .invite-btn, .no-js .env-hit { display: none; }
+.no-js .envelope { translate: 0 0; }
+.no-js .env-flap { transform: rotateX(180deg); z-index: 0; }
+.no-js .env-seal { display: none; }
+.no-js .env-card { transform: translateY(-70%); }
+.no-js .env-card > * { opacity: 1; }
+
+/* ------------------------------------------------------------------ encerramento */
+.closing { order: 5; background: var(--night); color: var(--on-dark); }
+.closing-photo { position: relative; height: 300px; overflow: hidden; display: grid; place-items: center; }
+.closing-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.7); transform: translate3d(0, var(--py, 0px), 0) scale(var(--s, 1.12)); will-change: transform; }
+.closing-phrase { position: relative; display: grid; justify-items: center; gap: 16px; color: var(--on-dark); }
+.closing-phrase .handnote { color: var(--on-dark); font-size: 29px; text-align: center; transform: rotate(-4deg); }
+.closing-phrase .rule { width: 58px; }
+.closing-copy { padding: 56px var(--gutter) calc(110px + env(safe-area-inset-bottom)); }
+.closing-copy h2 { color: var(--on-dark); font-size: 44px; }
+.closing-copy p:not(.photo-note) { margin-top: 16px; max-width: 30ch; color: var(--on-dark-2); }
+.heart { display: block; width: 24px; height: 24px; margin-top: 26px; color: var(--on-dark); }
+.closing-copy .photo-note { margin-top: 42px; color: #8d887b; }
+
+/* ------------------------------------------------------------------ atalho fixo (celular) */
+.mobile-rsvp {
+  position: fixed; z-index: 40; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 24px; border-radius: 999px;
+  background: var(--olive); color: var(--paper); text-decoration: none; white-space: nowrap;
+  font: 600 11.5px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase;
+  transform: translate3d(-50%, 90px, 0); visibility: hidden; transition: transform .45s var(--ease), visibility 0s linear .45s;
+}
+.mobile-rsvp.is-visible { transform: translate3d(-50%, 0, 0); visibility: visible; transition: transform .45s var(--ease); }
+
+
+/* ------------------------------------------------------------------ desktop */
+@media (min-width: 1024px) {
+  :root { --gutter: 72px; }
+  h2 { font-size: clamp(56px, 5vw, 76px); }
+  .wordmark { font-size: 26px; }
+  .mobile-menu, .mobile-rsvp, .hero-cta { display: none; }
+  .site-header { padding-top: 34px; }
+  .desktop-nav { display: flex; align-items: center; gap: 42px; font: 400 13.5px/1 var(--sans); color: var(--ink); }
+  .desktop-nav a:not(.pill) { text-decoration: none; padding: 14px 0; position: relative; }
+  .desktop-nav a:not(.pill)::after { content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: 100% 50%; transition: transform .4s var(--ease); }
+  .desktop-nav a:not(.pill):hover::after, .desktop-nav a:not(.pill):focus-visible::after { transform: scaleX(1); transform-origin: 0 50%; }
+  .desktop-nav .pill { margin-left: 8px; }
+
+  /* ordem da referência desktop: hero, história, casamento, confirmação+convite, final */
+  .story { order: 2; }
+  .wedding { order: 3; }
+
+  .hero { min-height: 100vh; height: 100vh; }
+  .hero-photo img { object-position: 50% 12%; }
+  .hero-copy { position: absolute; left: 9vw; top: 21vh; padding: 0; }
+  .hero h1 { font-size: clamp(130px, 12.6vw, 196px); line-height: .83; }
+  .tagline { margin-top: 44px; font-size: 13px; }
+  .hero-date { margin-top: 34px; font-size: 22px; }
+  .hero-place { margin-top: 12px; font-size: 12.5px; }
+  .scroll-cue { left: 9vw; bottom: 44px; font-size: 14px; }
+  .hero-note { position: static; margin-top: 18px; }
+  .hero { background: var(--cream-3); }
+
+  .story { display: grid; grid-template-columns: 36fr 64fr; align-items: center; column-gap: 0; padding: 64px var(--gutter) 0 6vw; overflow: hidden; }
+  .story-copy { padding-bottom: 40px; }
+  .story-copy h2 { font-size: clamp(64px, 5.4vw, 84px); }
+  .story-copy p:not(.photo-note) { font-size: 19px; line-height: 1.6; max-width: 29ch; margin-top: 26px; }
+  .story-photos { margin-top: 0; height: 600px; }
+  .p1 { left: 4%; top: 0; width: 47%; padding: 14px 14px 16px; }
+  .p2 { left: 43%; right: auto; top: 44%; width: 45%; padding: 14px 14px 16px; }   /* sangra pela base, como na referência */
+  .story-photos .handnote { right: 0; top: 6%; font-size: 32px; }
+
+  .wedding { min-height: 760px; display: grid; background: #d8d4ca; }
+  .wedding-photo { display: block; position: absolute; inset: 0; overflow: hidden; }
+  .wedding-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; transform: translate3d(0, var(--py, 0px), 0) scale(var(--s, 1.1)); will-change: transform; }
+  .branch-wedding { display: none; }
+  .wedding-copy { align-self: center; margin-left: 43%; padding: 100px 5vw 100px 0; }
+  .wedding-copy h2 { margin-top: 26px; font-size: clamp(68px, 5.8vw, 88px); }
+  .lead { font-size: 22px; line-height: 1.55; max-width: 32ch; color: #3f4033; }
+  .facts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 52px; margin-top: 48px; }
+  .facts > div { grid-template-columns: 32px 1fr; gap: 16px; }
+  .facts dt svg { width: 32px; height: 32px; }
+  .facts dd { font-size: 17px; }
+  .facts dd span { font-size: 15px; }
+  .map-btn { background: var(--olive); color: var(--paper); border-color: transparent; min-height: 54px; padding: 0 30px; }
+  .facts dd span { color: #55534a; }
+  .map-btn { margin-top: 48px; }
+  .wedding-copy .note { color: #55534a; }
+
+  .duo { display: grid; grid-template-columns: 1fr 1fr; }
+  .duo { overflow: visible; }
+  .rsvp, .invite { padding: 110px 4vw 110px 7vw; min-height: 540px; }
+  .rsvp h2, .invite h2 { font-size: clamp(54px, 4.3vw, 64px); }
+  .invite { border-top: 0; border-left: 1px solid var(--line); padding-left: 5vw; padding-right: 250px; overflow: hidden; }
+  .rsvp > p, .invite > p:not(.note) { font-size: 18px; line-height: 1.6; max-width: 32ch; }
+  .rsvp-open, .invite-btn { margin-top: 38px; min-height: 54px; padding: 0 30px; }
+  .branch-rsvp { width: 140px; height: 240px; left: -46px; top: 90px; bottom: auto; }
+  /* o envelope sangra pela borda direita e pelo topo, como um objeto apoiado na página */
+  .envelope { position: absolute; right: -60px; top: -34px; margin: 0; width: 310px; height: 440px; rotate: -8deg; translate: 0 0; }
+  .envelope[data-open="true"], .no-js .envelope { translate: -36px 284px; rotate: -3deg; }
+  .invite { padding-right: 270px; min-height: 600px; }
+  .card-names { font-size: 42px; }
+  .card-line { font-size: 14px; }
+  .invite-note { margin-top: 16px; }
+
+  .closing { display: grid; grid-template-columns: 1fr 1fr; min-height: 470px; }
+  .closing-photo { height: auto; }
+  .closing-photo img { filter: brightness(.42) saturate(.6) sepia(.15); }
+  .closing-phrase .handnote { font-size: 40px; }
+  .closing-phrase .rule { width: 76px; }
+  .closing-copy { align-self: center; padding: 90px 9vw 90px 6vw; }
+  .closing-copy h2 { font-size: 60px; }
+  .closing-copy p:not(.photo-note) { font-size: 18px; }
+  .heart { width: 30px; height: 30px; }
+}
+
+
+/* ==================================================================================== MOTION
+   Poucos movimentos, ligados à fotografia. Tudo em transform/opacity/máscara (sem layout shift).
+   Variáveis de progresso escritas pelo scripts/main.js a partir da posição (sem estado guardado):
+   --hp hero saindo · --sp história atravessando · --wp casamento se formando · --ep envelope pousando
+   --cin/--cp final entrando/até o fim da página. Sem JS ou com "reduzir movimento": página estática. */
+
+/* ---- hero: a foto abre primeiro, o nome sobe por trás de uma máscara, os dados passam como linha */
+.js .hero-photo { transform: scale(calc(1 - var(--hp, 0) * .14)); transform-origin: 50% 0; will-change: transform; animation: photo-open 1.3s var(--ease) backwards; }
+.js .hero-photo img { transform-origin: 50% 0; transform: translate3d(0, var(--py, 0px), 0) scale(calc((var(--s, 1.08) + var(--hp, 0) * .06) / (1 - var(--hp, 0) * .14))); animation: photo-settle 1.8s var(--ease) backwards; }
+@keyframes photo-open { from { transform: scale(.9); } }
+@keyframes photo-settle { from { transform: scale(1.24); } }
+.js .hero h1 .line { overflow: hidden; overflow: clip; padding: .06em 0 .18em; margin: -.06em 0 -.18em; }
+.js .hero h1 .line > span { display: inline-block; animation: line-up 1.15s var(--ease) .42s backwards; }
+.js .hero h1 .line + .line > span { animation-delay: .54s; }
+@keyframes line-up { from { transform: translate3d(0, 140%, 0); } }
+.js :is(.tagline, .hero-date, .hero-place, .hero-note) { animation: wipe 1s var(--ease) .9s backwards; }
+.js .hero-date { animation-delay: 1.02s; }
+.js :is(.hero-place, .hero-note) { animation-delay: 1.1s; }
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.js :is(.scroll-cue, .hero-cta) { animation: soft-in .8s ease 1.15s backwards; }
+@keyframes soft-in { from { opacity: 0; } }
+/* primeiro scroll: o nome fica um pouco para trás da foto (profundidade) e perde peso */
+.js .hero-copy { transform: translate3d(0, calc(var(--hp, 0) * 96px), 0) scale(calc(1 - var(--hp, 0) * .05)); transform-origin: 0 0; opacity: calc(1 - var(--hp, 0) * .6); }
+.js :is(.scroll-cue, .hero-cta) { opacity: calc(1 - var(--hp, 0) * 3); }
+/* hero → próxima seção: a foto se fecha como uma cópia impressa sobre o creme que continua abaixo */
+/* quem volta ao site vê uma entrada curta */
+.revisit .hero-photo { animation-duration: .7s; }
+.revisit .hero-photo img { animation-duration: .9s; }
+.revisit .hero h1 .line > span { animation-duration: .7s; animation-delay: .08s; }
+.revisit .hero h1 .line + .line > span { animation-delay: .14s; }
+.revisit :is(.tagline, .hero-date, .hero-place, .hero-note) { animation-duration: .6s; animation-delay: .3s; }
+.revisit :is(.scroll-cue, .hero-cta) { animation-delay: .35s; }
+
+/* ---- história: as duas fotos atravessam a seção em ritmos diferentes; uma passa sobre o título */
+.story-copy { position: relative; z-index: 1; }
+.story-photos { z-index: 2; }
+.story { --ax1: -26px; --ay1: -46px; --ay2: -110px; }
+.js .p1 { transform: translate3d(calc((var(--sp, .5) - .5) * var(--ax1)), calc((var(--sp, .5) - .5) * var(--ay1)), 0) rotate(calc(-3deg + (var(--sp, .5) - .5) * 3deg)); }
+.js .p2 { transform: translate3d(0, calc((var(--sp, .5) - .5) * var(--ay2)), 0) rotate(calc(3.5deg + (var(--sp, .5) - .5) * 5deg)); }
+/* revelação única: a cópia "sai" de baixo para cima; a anotação é escrita da esquerda para a direita */
+.js .polaroid { clip-path: inset(100% 0 0 0); transition: clip-path 1.2s var(--ease); }
+.js .polaroid.is-in { clip-path: inset(-40px -40px -70px -40px); }
+.js .polaroid img { transform: scale(1.14); transition: transform 1.6s var(--ease); }
+.js .polaroid.is-in img { transform: scale(1); }
+.js .p2 { transition-delay: .2s; }
+.js .p2 img { transition-delay: .2s; }
+.js .story-photos .handnote { clip-path: inset(-10px 100% -10px -10px); transition: clip-path 1.7s cubic-bezier(.45, .05, .3, 1) .7s; }
+.js .story-photos .handnote.is-in { clip-path: inset(-10px -10px -10px -10px); }
+
+/* ---- casamento: foto e informações se montam como um movimento só, guiado pelo scroll */
+.js .wedding-copy { --k: clamp(0, calc((var(--wp, 0) - .26) / .56), 1); clip-path: inset(-12px -12px calc((1 - var(--k)) * 100%) -12px); }
+.js .wedding-copy .rule { transform: scaleX(var(--k)); transform-origin: 0 50%; }
+.js .branch-wedding { transform: rotate(calc(52deg + (1 - var(--wp, 0)) * 22deg)); transform-origin: 70% 10%; }
+
+/* ---- convite: objeto que pousa (inclinação e sombra mudam ao entrar), responde ao toque e abre */
+.js .envelope { --env-tx: calc((1 - var(--ep, 1)) * 18deg); --env-y: calc((1 - var(--ep, 1)) * 42px); --env-sh: calc(.3 + (1 - var(--ep, 1)) * .7); }
+.envelope:has(.env-hit:active) { --env-press: .985; transition-duration: .08s; }
+@media (hover: hover) { .envelope:not([data-open="true"]):hover { --env-press: 1.015; } }
+
+/* ---- confirmação: entrada limpa; o botão se preenche; campos e envio com resposta clara */
+.js .rsvp { opacity: 0; transition: opacity .7s ease; }
+.js .rsvp.is-in { opacity: 1; }
+.js .rsvp.is-in .rsvp-open { animation: cta-fill .9s var(--ease) .15s backwards; }
+@keyframes cta-fill { from { clip-path: inset(0 100% 0 0 round 999px); } to { clip-path: inset(0 0 0 0 round 999px); } }
+.rsvp-form.is-open { animation: form-in .55s var(--ease); }
+@keyframes form-in { from { clip-path: inset(0 0 100% 0); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+.rsvp-form input { background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 100% / 0 1.5px; transition: background-size .5s var(--ease); }
+.rsvp-form input:focus { background-size: 100% 1.5px; }
+.rsvp-form input[aria-invalid="true"] { background-image: linear-gradient(#8a4f35, #8a4f35); background-size: 100% 1.5px; }
+.rsvp-form label { transition: color .25s; }
+.rsvp-form label:has(+ input:focus) { color: var(--olive-3); }
+.rsvp-form[aria-busy="true"] #rsvp-submit { opacity: .7; }
+.form-status:not([hidden]) { animation: wipe .6s var(--ease); }
+
+/* ---- final: a foto entra como janela, cresce muito devagar e escurece; o texto chega contido */
+.closing-photo::after { content: ''; position: absolute; inset: 0; z-index: 0; background: #0e0f0b; opacity: calc(var(--cp, 0) * .45); pointer-events: none; }
+.closing-phrase { z-index: 1; }
+.js .closing-photo { transform: scale(calc(.9 + .1 * var(--cin, 1))); transform-origin: 50% 0; }
+.js .closing-photo img { transform: translate3d(0, var(--py, 0px), 0) scale(calc((var(--s, 1.12) + var(--cp, 0) * .12) / (.9 + .1 * var(--cin, 1)))); transform-origin: 50% 0; }
+.js .closing-phrase .rule { transform: scaleX(0); transition: transform 1s var(--ease) .1s; }
+.js .closing-phrase .handnote { clip-path: inset(-14px 100% -14px -14px); transition: clip-path 1.9s cubic-bezier(.45, .05, .3, 1) .35s; }
+.js .closing-phrase.is-in .rule { transform: scaleX(1); }
+.js .closing-phrase.is-in .handnote { clip-path: inset(-14px -14px -14px -14px); }
+.js .closing-copy .line { overflow: hidden; overflow: clip; padding-bottom: .14em; margin-bottom: -.14em; }
+.js .closing-copy .line > span { display: inline-block; transform: translate3d(0, 140%, 0); transition: transform 1.1s var(--ease); }
+.js .closing-copy > :not(h2) { opacity: 0; transition: opacity .9s ease .35s; }
+.js .closing-copy.is-in .line > span { transform: none; }
+.js .closing-copy.is-in > :not(h2) { opacity: 1; }
+.heart path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.js .closing-copy .heart path { stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s ease .55s; }
+.js .closing-copy.is-in .heart path { stroke-dashoffset: 0; }
+
+@media (min-width: 1024px) {
+  /* a primeira foto chega a cobrir o fim do título por um instante */
+  .story { --ax1: -150px; --ay1: -70px; --ay2: -170px; }
+  .js .closing-photo { transform-origin: 100% 50%; }
+  .js .closing-photo img { transform-origin: 100% 50%; }
+  .js .wedding-photo { transform: scale(calc(.8 + .2 * var(--wp, 0))); transform-origin: 30% 55%; }
+  .js .wedding-photo img { transform-origin: 30% 55%; transform: translate3d(0, var(--py, 0px), 0) scale(calc((var(--s, 1.1) + (1 - var(--wp, 0)) * .1) / (.8 + .2 * var(--wp, 0)))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  .js .hero-photo, .js .hero-copy, .js .wedding-photo, .js .closing-photo, .js .branch-wedding { transform: none !important; }
+  .js .hero-photo img, .js .wedding-photo img, .js .closing-photo img, .js .polaroid img { transform: none !important; will-change: auto !important; }
+  .js .p1 { transform: rotate(-3deg) !important; }
+  .js .p2 { transform: rotate(3.5deg) !important; }
+  .js .hero-copy, .js :is(.scroll-cue, .hero-cta), .js .rsvp, .js .closing-copy > * { opacity: 1 !important; }
+  .js .polaroid, .js .handnote, .js .wedding-copy { clip-path: none !important; }
+  .js .wedding-copy .rule, .js .closing-phrase .rule { transform: none !important; }
+  .js .closing-copy .line > span { transform: none !important; }
+  .js .closing-copy .heart path { stroke-dashoffset: 0 !important; }
+  .js .envelope { --env-tx: 0deg; --env-y: 0px; --env-sh: .3; }
+  .closing-photo::after { opacity: .2; }
+}
